@@ -159,9 +159,10 @@ def main():
 
     # create pacman spites in random positions
     sprites = []
-    for _ in range(sprite_count):
-        sprites.append(pacman(sprites, SPRITE_WIDTH, SPRITE_HEIGHT, SPRITE_STEPS))
-
+    sprites.extend(
+        pacman(sprites, SPRITE_WIDTH, SPRITE_HEIGHT, SPRITE_STEPS)
+        for _ in range(sprite_count)
+    )
     # move and draw sprites
     while True:
         for sprite in sprites:

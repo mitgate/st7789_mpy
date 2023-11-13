@@ -751,20 +751,26 @@ SCALE_RADIUS = min(SCALE_X, SCALE_Y)
 
 buttons = tft_buttons.Buttons()
 
-if buttons.name == 'tdisplay_esp32':
+if buttons.name == 't-dongle-s3':
+    left_flipper = buttons.button
+    right_flipper = buttons.button
+    REDRAW_EVERY_FRAME = False
+
+
+elif buttons.name == 'tdisplay_esp32':
     left_flipper = buttons.left
     right_flipper = buttons.right
 
     # results in table corruption but is playable
     REDRAW_EVERY_FRAME = False
 
-elif buttons.name == 'tdisplay_rp2040':
+elif buttons.name in ['tdisplay_rp2040', 't-display-s3']:
     left_flipper = buttons.left
     right_flipper = buttons.right
 
-elif buttons.name == 't-display-s3':
-    left_flipper = buttons.left
-    right_flipper = buttons.right
+elif buttons.name == 'wio_terminal':
+    left_flipper = buttons.center
+    right_flipper = buttons.button1
 
 elif buttons.name == 'ws_pico_114':
     left_flipper = buttons.key3
@@ -777,16 +783,6 @@ elif buttons.name == 'ws_pico_13':
 elif buttons.name == 'ws_pico_2':
     left_flipper = buttons.key2
     right_flipper = buttons.key1
-
-elif buttons.name == 'wio_terminal':
-    left_flipper = buttons.center
-    right_flipper = buttons.button1
-
-elif buttons.name == 't-dongle-s3':     # not practical, but why not
-    left_flipper = buttons.button
-    right_flipper = buttons.button
-    REDRAW_EVERY_FRAME = False
-
 
 table = Table()
 start_game()
