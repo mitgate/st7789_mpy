@@ -114,7 +114,7 @@ def main():
             gc.collect()
 
             # draw the new background from the clock_{WIDTH}x{HEIGHT} directory
-            image_file = "clock_{}x{}/{}".format(tft.width(), tft.height(), image)
+            image_file = f"clock_{tft.width()}x{tft.height()}/{image}"
             tft.jpg(image_file, 0, 0, st7789.SLOW)
 
             # calculate the starting column for each time digit

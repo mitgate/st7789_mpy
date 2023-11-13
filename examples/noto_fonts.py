@@ -17,11 +17,7 @@ tft = tft_config.config(1, buffer_size=16*32*2)
 def center(font, s, row, color=st7789.WHITE):
     screen = tft.width()                     # get screen width
     width = tft.write_len(font, s)           # get the width of the string
-    if width and width < screen:             # if the string < display
-        col = tft.width() // 2 - width // 2  # find the column to center
-    else:                                    # otherwise
-        col = 0                              # left justify
-
+    col = tft.width() // 2 - width // 2 if width and width < screen else 0
     tft.write(font, s, col, row, color)      # and write the string
 
 

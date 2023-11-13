@@ -76,9 +76,7 @@ def fixup_c(filename):
             # Get next line.
             l = lines.pop(0)
 
-            # Dedent #'s to match indent of following line (not previous line).
-            m = re.match(r"( +)#(if |ifdef |ifndef |elif |else|endif)", l)
-            if m:
+            if m := re.match(r"( +)#(if |ifdef |ifndef |elif |else|endif)", l):
                 indent = len(m.group(1))
                 directive = m.group(2)
                 if directive in ("if ", "ifdef ", "ifndef "):
@@ -132,7 +130,7 @@ def main():
             # Filter against the default list of files. This is a little fiddly
             # because we need to apply both the inclusion globs given in PATHS
             # as well as the EXCLUSIONS, and use absolute paths
-            files = set(os.path.abspath(f) for f in files)
+            files = {os.path.abspath(f) for f in files}
             all_files = set(list_files(PATHS, EXCLUSIONS, TOP))
             if args.v:  # In verbose mode, log any files we're skipping
                 for f in files - all_files:

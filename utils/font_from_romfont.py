@@ -58,19 +58,19 @@ def main():
     is_dir = os.path.isdir(args.input)
     bin_files = os.listdir(args.input) if is_dir else [args.input]
     for bin_file_name in bin_files:
-        match = file_re.match(bin_file_name)
-        if match:
+        if match := file_re.match(bin_file_name):
             font_width = int(match.group(2))
             font_height = int(match.group(3))
 
             if is_dir:
-                bin_file_name = args.input+'/'+bin_file_name
+                bin_file_name = f'{args.input}/{bin_file_name}'
 
             if is_dir:
                 font_file_name = (
-                    args.font_directory + '/' +
-                    match.group(1).rstrip('_').lower()+
-                    f'_{font_width}x{font_height}.py')
+                    f'{args.font_directory}/'
+                    + match.group(1).rstrip('_').lower()
+                    + f'_{font_width}x{font_height}.py'
+                )
             else:
                 font_file_name = args.output
 

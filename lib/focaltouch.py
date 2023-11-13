@@ -127,7 +127,7 @@ class FocalTouch:
 
         for i in range(2):
             point_data = data[i * 6 + 3 : i * 6 + 9]
-            if all([i == 0xFF for i in point_data]):
+            if all(i == 0xFF for i in point_data):
                 continue
             # print([hex(i) for i in point_data])
             x, y, weight, misc = struct.unpack(">HHBB", point_data)

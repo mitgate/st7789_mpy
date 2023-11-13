@@ -43,7 +43,7 @@ def main():
     center_y = radius // 2 - 1          # center of the face vertically
 
     # draw the watch face background
-    face = "face_{}x{}.jpg".format(width, height)
+    face = f"face_{width}x{height}.jpg"
     tft.jpg(face, 0, 0, st7789.SLOW)
 
     # create the polygons for the hour, minute and second hands
